@@ -51,7 +51,7 @@ visionClient.batchAnnotateImages({requests: requests}).then(function(responses) 
 
            
            
-           }
+           
 })
 router.get('/data', function (req, res) {
   res.send('POST request to the homepage')

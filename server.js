@@ -14,7 +14,11 @@ var visionClient = vision({
   keyFilename: './ionic.json'
 });
  
-var gcsImageUri = 'gs://gapic-toolkit/President_Barack_Obama.jpg';
+router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.json());
+var server = http.createServer(router);
+router.get(/myinfo',function(req,res){
+           var gcsImageUri = 'gs://gapic-toolkit/President_Barack_Obama.jpg';
 var source = {
     gcsImageUri : gcsImageUri
 };
@@ -36,7 +40,7 @@ visionClient.batchAnnotateImages({requests: requests}).then(function(responses) 
     var newresp=response.responses[0].faceAnnotations[0].detectionConfidence;
      var newresp1=response.responses[0].faceAnnotations[0].joyLikelihood;
     
-   
+    res.send((JSON.stringify(response, null, 2))) 
     
       console.log(newresp1);
     // doThingsWith(response)
@@ -44,9 +48,10 @@ visionClient.batchAnnotateImages({requests: requests}).then(function(responses) 
 .catch(function(err) {
     console.error(err);
 });
-router.use(bodyParser.urlencoded({ extended: false }));
-router.use(bodyParser.json());
-var server = http.createServer(router);
+
+           
+           
+           }
 router.get('/data', function (req, res) {
   res.send('POST request to the homepage')
 });

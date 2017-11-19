@@ -17,7 +17,7 @@ var visionClient = vision({
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 var server = http.createServer(router);
-router.get(/myinfo',function(req,res){
+router.get('/myinfo',function(req,res){
            var gcsImageUri = 'gs://gapic-toolkit/President_Barack_Obama.jpg';
 var source = {
     gcsImageUri : gcsImageUri
@@ -52,6 +52,7 @@ visionClient.batchAnnotateImages({requests: requests}).then(function(responses) 
            
            
            }
+})
 router.get('/data', function (req, res) {
   res.send('POST request to the homepage')
 });

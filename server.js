@@ -9,6 +9,7 @@ var vision = require('@google-cloud/vision');
 
 var express = require('express');
 var router = express();
+
 var visionClient = vision({
   projectId: 'ionic-face-api',
   keyFilename: './ionic.json'
@@ -16,6 +17,11 @@ var visionClient = vision({
  
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
+router.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+})
 var server = http.createServer(router);
 router.get('/myinfo',function(req,res){
            var gcsImageUri = 'gs://gapic-toolkit/President_Barack_Obama.jpg';

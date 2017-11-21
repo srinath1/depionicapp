@@ -23,8 +23,9 @@ router.use(function(req, res, next) {
         next();
 })
 var server = http.createServer(router);
+
 router.get('/myinfo',function(req,res){
-           var gcsImageUri = 'gs://gapic-toolkit/President_Barack_Obama.jpg';
+           var gcsImageUri = req.body;
 var source = {
     gcsImageUri : gcsImageUri
 };
